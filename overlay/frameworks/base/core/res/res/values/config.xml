@@ -290,4 +290,30 @@
     <string name="db_default_journal_mode">MEMORY</string>
     <string name="db_default_sync_mode">OFF</string>
     <string name="db_wal_sync_mode">OFF</string>
+
+    <!-- The default intensity level for alarm vibrations. See
+         Settings.System.ALARM_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultAlarmVibrationIntensity">1</integer>
+    <!-- The default intensity level for haptic feedback. See
+         Settings.System.HAPTIC_FEEDBACK_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultHapticFeedbackIntensity">1</integer>
+    <!-- The default intensity level for media vibrations. See
+         Settings.System.MEDIA_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultMediaVibrationIntensity">1</integer>
+    <!-- The default intensity level for notification vibrations. See
+         Settings.System.NOTIFICATION_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultNotificationVibrationIntensity">1</integer>
+    <!-- The default intensity level for ring vibrations. See
+         Settings.System.RING_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultRingVibrationIntensity">1</integer>
+
+    <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
+    <bool name="config_enableHapticTextHandle">true</bool>
 </resources>
