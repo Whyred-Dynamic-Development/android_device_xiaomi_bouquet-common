@@ -7,6 +7,9 @@ ro.netflix.bsp_rev=Q660-13149-1
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
+# Filesystem
+fs_mgr.overlayfs.prefer_cache_backing_storage=true
+
 # Radio
 DEVICE_PROVISIONED=1
 persist.sys.fflag.override.settings_network_and_internet_v2=true
