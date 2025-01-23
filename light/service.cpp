@@ -1,40 +1,19 @@
-/*
- * Copyright (C) 2018 The Android Open Source Project
- * Copyright (C) 2020 The LineageOS Project
- *
- * SPDX-License-Identifier: Apache-2.0
- */
+#include <aidl/android/hardware/light/BnLight.h>
+#include <android/binder_manager.h>
+#include <android/binder_process.h>
 
-#define LOG_TAG "android.hardware.light@2.0-service.xiaomi_sdm660"
+#include "Lights.h"
 
-#include <android-base/logging.h>
-#include <hidl/HidlTransportSupport.h>
-
-#include "Light.h"
-
-using android::hardware::configureRpcThreadpool;
-using android::hardware::joinRpcThreadpool;
-
-using android::hardware::light::V2_0::implementation::Light;
-
-using android::OK;
-using android::status_t;
+using aidl::android::hardware::light::Light;
 
 int main() {
-    android::sp<Light> service = new Light();
+    ABinderProcess_setThreadPoolMaxThreadCount(0);
+    std::shared_ptr<Light> light = ndk::SharedRefBase::make<Light>();
 
-    configureRpcThreadpool(1, true);
+    const std::string instance = std::string() + Light::descriptor + "/default";
+    binder_status_t status = AServiceManager_addService(light->asBinder().get(), instance.c_str());
+    CHECK(status == STATUS_OK);
 
-    status_t status = service->registerAsService();
-    if (status != OK) {
-        LOG(ERROR) << "Cannot register Light HAL service.";
-        return 1;
-    }
-
-    LOG(DEBUG) << "Light HAL service ready.";
-
-    joinRpcThreadpool();
-
-    LOG(ERROR) << "Light HAL service failed to join thread pool.";
-    return 1;
+    ABinderProcess_joinThreadPool();
+    return EXIT_FAILURE; // Should never reach
 }
